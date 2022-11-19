@@ -9,7 +9,7 @@ import xml.etree.ElementTree as ET
 INTRO = "/home/pi/PieMarquee2/intro.mp4"
 VIEWER = "/opt/retropie/configs/all/PieMarquee2/omxiv-marquee /tmp/marquee.txt -f -b -d 7 -t 5 -T blend --duration 900 --aspect fill > /dev/null 2>&1 &"
 PRIORITIZE_PIEMARQUEE_ASSETS = False
-SLEEP_INTERVAL = 1 # how often the maibn cycle is called, in seconds
+SLEEP_INTERVAL = 0.5 # how often the maibn cycle is called, in seconds
 BURN_IN_PREVENTION_INTERVAL = 90 # When to display an alternate image to prevent burn-in, in seconds. 0 to disable
 BURN_IN_PREVENTION_DURATION = 20 # For how long to display the alternate image, in seconds
 # End of config bits
@@ -73,6 +73,7 @@ def update_burn_in_vars():
             set_burn_in_prevention(False)
     
 def set_burn_in_prevention(active):
+     global burn_in_secs_count,  burn_in_prevention_active
      burn_in_prevention_active = active
      burn_in_secs_count = 0
     
@@ -103,7 +104,6 @@ while True:
 
     if is_running("retroarch"): # Ingame
         ingame="*"
-        set_burn_in_prevention(False)
 
         if len(ps_grep) == 0:
             continue
