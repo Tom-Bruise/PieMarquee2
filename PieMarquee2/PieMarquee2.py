@@ -67,14 +67,14 @@ def update_burn_in_vars():
 
     if burn_in_prevention_active == False:
         if burn_in_secs_count == BURN_IN_PREVENTION_INTERVAL:
-            burn_in_prevention_active = True
-            burn_in_secs_count = 0
+            set_burn_in_prevention(True)
     else:
         if burn_in_secs_count == BURN_IN_PREVENTION_DURATION:
-            burn_in_prevention_active = False
-            burn_in_secs_count = 0
+            set_burn_in_prevention(False)
     
-
+def set_burn_in_prevention(active):
+     burn_in_prevention_active = active
+     burn_in_secs_count = 0
     
 if os.path.isfile(INTRO) == True:
     run_cmd("omxplayer --display 7 " + INTRO)
@@ -103,6 +103,7 @@ while True:
 
     if is_running("retroarch"): # Ingame
         ingame="*"
+        set_burn_in_prevention(False)
 
         if len(ps_grep) == 0:
             continue
