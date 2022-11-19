@@ -1,3 +1,5 @@
+# This repository contains custom changes for a specific arcade build. If you are not looking for something specific, you should use the original losernator repository.
+
 ![marquee example01](piemarquee01.jpg)
 ![marquee example02](piemarquee02.gif)
 *Cabinet by Justin Fite*
